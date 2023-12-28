@@ -32,6 +32,10 @@ class ShaderProgram implements IShaderProgram {
 		this.gl.uniform4f(this.getUniformLocation(name), x, y, z, w);
 	}
 
+	public setUniform1i(name: string, value: number): void {
+		this.gl.uniform1i(this.getUniformLocation(name), value);
+	}
+
 	private getUniformLocation(name: string): WebGLUniformLocation {
 		let location: WebGLUniformLocation | undefined = this.locations.get(name);
 

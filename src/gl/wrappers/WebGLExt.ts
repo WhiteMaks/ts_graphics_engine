@@ -222,37 +222,6 @@ class WebGLExt {
 	}
 
 	/**
-	 * Прикрепление шейдеров к программе
-	 * @param program шейдерная программа
-	 * @param shaders массив шейдеров для прикрепления к программе
-	 */
-	public attachShadersToProgram(program: WebGLProgram, shaders: WebGLShader[]): void {
-		for (const shader of shaders) {
-			this.context.attachShader(
-				program,
-				shader
-			);
-		}
-
-		this.context.linkProgram(program);
-
-		//если возникла ошибка при связывании шейдеров с программой, то подсказка будет в консоли
-		if (!this.context.getProgramParameter(program, this.context.LINK_STATUS)) {
-			console.error(
-				"Ошибка связывания программы с шейдерами",
-				this.context.getProgramInfoLog(program)
-			);
-		}
-
-		for (const shader of shaders) {
-			this.context.detachShader(
-				program,
-				shader
-			);
-		}
-	}
-
-	/**
 	 * Установка программы как часть текущего состояния рендеринга
 	 * @param program программа для использования
 	 */
@@ -315,6 +284,20 @@ class WebGLExt {
 	}
 
 	/**
+	 * Удаление текстуры
+	 */
+	public deleteTexture(texture: WebGLTexture): void {
+		this.context.deleteTexture(texture);
+	}
+
+	/**
+	 * Отвязывание текстуры от цели текстурирования
+	 */
+	public unbindTexture2D(): void {
+		this.context.bindTexture(this.context.TEXTURE_2D, null);
+	}
+
+	/**
 	 * Связывание текстуры к цели текстурирования
 	 * @param texture текстура для связывания
 	 */
@@ -326,11 +309,55 @@ class WebGLExt {
 	}
 
 	/**
+	 * Установка параметра для текстуры
+	 */
+	public tex2DParameteriMinFilterLinear(): void {
+		this.context.texParameteri(
+			this.context.TEXTURE_2D,
+			this.context.TEXTURE_MIN_FILTER,
+			this.context.LINEAR
+		);
+	}
+
+	/**
+	 * Установка параметра для текстуры
+	 */
+	public tex2DParameteriMagFilterLinear(): void {
+		this.context.texParameteri(
+			this.context.TEXTURE_2D,
+			this.context.TEXTURE_MAG_FILTER,
+			this.context.LINEAR
+		);
+	}
+
+	/**
+	 * Установка параметра для текстуры
+	 */
+	public tex2DParameteriWrapSClampToEdge(): void {
+		this.context.texParameteri(
+			this.context.TEXTURE_2D,
+			this.context.TEXTURE_WRAP_S,
+			this.context.CLAMP_TO_EDGE
+		);
+	}
+
+	/**
+	 * Установка параметра для текстуры
+	 */
+	public tex2DParameteriWrapTClampToEdge(): void {
+		this.context.texParameteri(
+			this.context.TEXTURE_2D,
+			this.context.TEXTURE_WRAP_T,
+			this.context.CLAMP_TO_EDGE
+		);
+	}
+
+	/**
 	 * Установка 2D изображение текстуры
 	 * @param level уровень детализации
 	 * @param texture изображение текстуры
 	 */
-	public textureImage2DRGBAUnsignedByte(level: number, texture: HTMLImageElement): void {
+	public texImage2DRGBAUbyte(level: number, texture: HTMLImageElement): void {
 		this.context.texImage2D(
 			this.context.TEXTURE_2D,
 			level,
@@ -338,18 +365,6 @@ class WebGLExt {
 			this.context.RGBA,
 			this.context.UNSIGNED_BYTE,
 			texture
-		);
-
-		this.context.texParameteri(
-			this.context.TEXTURE_2D,
-			this.context.TEXTURE_MIN_FILTER,
-			this.context.NEAREST
-		);
-
-		this.context.texParameteri(
-			this.context.TEXTURE_2D,
-			this.context.TEXTURE_MAG_FILTER,
-			this.context.NEAREST
 		);
 	}
 
@@ -616,7 +631,7 @@ class WebGLExt {
 	 * @param location положение униформы
 	 * @param value позиция
 	 */
-	public uniformI(location: WebGLUniformLocation, value: number): void {
+	public uniform1i(location: WebGLUniformLocation, value: number): void {
 		this.context.uniform1i(
 			location,
 			value
@@ -636,10 +651,11 @@ class WebGLExt {
 	}
 
 	/**
-	 * Использование текстурного регистра 0
+	 * Использование текстурного регистра в слоте
+	 * @param slot слот который необходимо использовать
 	 */
-	public activeTexture0() {
-		this.context.activeTexture(this.context.TEXTURE0);
+	public activeTexture(slot: number) {
+		this.context.activeTexture(this.context.TEXTURE0 + slot);
 	}
 
 	/**
