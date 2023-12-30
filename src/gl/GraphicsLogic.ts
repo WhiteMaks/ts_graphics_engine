@@ -1,4 +1,3 @@
-import WebGLExt from "./wrappers/WebGLExt";
 import GraphicsElement from "./support/GraphicsElement";
 import Cleanable from "./support/Cleanable";
 
@@ -10,7 +9,7 @@ interface GraphicsLogic extends Cleanable {
 	/**
 	 * Инициализация графической логики
 	 */
-	init(gl: WebGLExt): void;
+	init(graphicsElement: GraphicsElement): void;
 
 	/**
 	 * Обработка логики связанной с пользовательской логикой
@@ -27,6 +26,7 @@ interface GraphicsLogic extends Cleanable {
 	 * Обработка логики отрисовки кадра
 	 */
 	render(): void;
+
 }
 
 export default GraphicsLogic;

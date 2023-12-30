@@ -73,9 +73,7 @@ class GraphicsApplication {
 	private init(): void {
 		this.graphicElement.init();
 
-		this.logic.init(
-			this.graphicElement.getWebGL()
-		);
+		this.logic.init(this.graphicElement);
 	}
 
 	/**

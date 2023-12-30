@@ -55,7 +55,8 @@ class GraphicsElement {
 			webGLContext //выбранный контекст
 		);
 		this.gl.enableDepthTest(); //включение проверки удаленности объектов
-		this.gl.enableBlend(); //включение прозрачности
+		this.gl.enableBlend(); //включение смешивания пикселей
+		this.gl.blendFuncSrcAlphaOneMinusSrcAlpha(); //включение прозрачности
 
 		this.spaceColor = [0, 0, 0, 1];
 	}

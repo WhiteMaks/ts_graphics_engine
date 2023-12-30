@@ -10,6 +10,8 @@ interface IShaderProgram extends Cleanable {
 
 	setUniform1i(name: string, value: number): void;
 
+	setUniformMatrix4f(name: string, matrix: number[]): void;
+
 }
 
 export default IShaderProgram;
