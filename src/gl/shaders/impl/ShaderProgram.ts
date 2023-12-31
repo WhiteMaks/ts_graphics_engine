@@ -1,16 +1,19 @@
 import IShaderProgram from "../IShaderProgram";
 import IShader from "../IShader";
 import WebGLExt from "../../wrappers/WebGLExt";
+import Vector4 from "../../maths/impl/Vector4";
+import Vector3 from "../../maths/impl/Vector3";
+import Matrix4 from "../../maths/impl/Matrix4";
 
 class ShaderProgram implements IShaderProgram {
+	private readonly locationsCache: Map<string, WebGLUniformLocation>;
 	private readonly gl: WebGLExt;
 	private readonly program: WebGLProgram;
-	private readonly locations: Map<string, WebGLUniformLocation>;
 	private readonly vertexShader: IShader;
 	private readonly fragmentShader: IShader;
 
 	public constructor(gl: WebGLExt, vertexShader: IShader, fragmentShader: IShader) {
-		this.locations = new Map<string, WebGLUniformLocation>();
+		this.locationsCache = new Map<string, WebGLUniformLocation>();
 
 		this.gl = gl;
 		this.vertexShader = vertexShader;
@@ -32,24 +35,28 @@ class ShaderProgram implements IShaderProgram {
 		this.gl.removeProgram();
 	}
 
-	public setUniform4f(name: string, x: number, y: number, z: number, w: number): void {
-		this.gl.uniform4f(this.getUniformLocation(name), x, y, z, w);
+	public setUniform3f(name: string, vector: Vector3): void {
+		this.gl.uniform3f(this.getUniformLocation(name), vector);
+	}
+
+	public setUniform4f(name: string, vector: Vector4): void {
+		this.gl.uniform4f(this.getUniformLocation(name), vector);
 	}
 
 	public setUniform1i(name: string, value: number): void {
 		this.gl.uniform1i(this.getUniformLocation(name), value);
 	}
 
-	public setUniformMatrix4f(name: string, matrix: number[]): void {
-		this.gl.uniformMatrix4fv(this.getUniformLocation(name), false, new Float32Array(matrix));
+	public setUniformMatrix4f(name: string, matrix: Matrix4): void {
+		this.gl.uniformMatrix4fv(this.getUniformLocation(name), false, new Float32Array(matrix.getArray()));
 	}
 
 	private getUniformLocation(name: string): WebGLUniformLocation {
-		let location: WebGLUniformLocation | undefined = this.locations.get(name);
+		let location: WebGLUniformLocation | undefined = this.locationsCache.get(name);
 
 		if (!location) {
 			location = this.gl.getUniformLocation(this.program, name);
-			this.locations.set(name, location);
+			this.locationsCache.set(name, location);
 		}
 
 		return location;

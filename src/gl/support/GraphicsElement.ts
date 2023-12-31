@@ -1,4 +1,5 @@
 import WebGLExt from "../wrappers/WebGLExt";
+import Vector4 from "../maths/impl/Vector4";
 
 /**
  * Класс для создания нового графического элемента и взаимодействия с ним
@@ -21,11 +22,12 @@ class GraphicsElement {
 	 * @private
 	 */
 	private readonly gl: WebGLExt;
+
 	/**
 	 * Объект для хранения цвета пространства
 	 * @private
 	 */
-	private readonly spaceColor: number[];
+	private spaceColor: Vector4;
 
 	/**
 	 * Конструктор для создания объекта графического элемента в родительском элементе
@@ -39,7 +41,7 @@ class GraphicsElement {
 		this.canvasElement.style.width = "100%";
 		this.canvasElement.style.height = "100%";
 		//запрет на получение контекст меню при нажатии на правую кнопку мыши, так как права кнопка мыши может быть использована для вращения камерой
-		this.canvasElement.oncontextmenu = function (event) {
+		this.canvasElement.oncontextmenu = function () {
 			return false
 		};
 
@@ -58,7 +60,7 @@ class GraphicsElement {
 		this.gl.enableBlend(); //включение смешивания пикселей
 		this.gl.blendFuncSrcAlphaOneMinusSrcAlpha(); //включение прозрачности
 
-		this.spaceColor = [0, 0, 0, 1];
+		this.spaceColor = new Vector4(0, 0, 0, 1);
 	}
 
 	/**
@@ -81,11 +83,7 @@ class GraphicsElement {
 	 * Отрисовка графического элемента
 	 */
 	public render(): void {
-		this.setClearColor(
-			this.spaceColor[0],
-			this.spaceColor[1],
-			this.spaceColor[2]
-		);
+		this.setClearColor(this.spaceColor);
 
 		this.gl.clearColorBuffer();
 		this.gl.clearDepthBuffer();
@@ -131,14 +129,10 @@ class GraphicsElement {
 
 	/**
 	 * Установка нового цвета для пространства
-	 * @param red красные цвет
-	 * @param green зеленый цвет
-	 * @param blue синий цвет
+	 * @param color цветовой вектор
 	 */
-	public setSpaceColor(red: number, green: number, blue: number): void {
-		this.spaceColor[0] = red;
-		this.spaceColor[1] = green;
-		this.spaceColor[2] = blue;
+	public setSpaceColor(color: Vector4): void {
+		this.spaceColor = color;
 	}
 
 	/**
@@ -163,11 +157,12 @@ class GraphicsElement {
 		);
 	}
 
-	private setClearColor(red: number, green: number, blue: number) {
-		this.gl.clearColor(
-			red,
-			green,
-			blue
+	private setClearColor(color: Vector4) {
+		this.gl.clearColorWithAlpha(
+			color.getX(),
+			color.getY(),
+			color.getZ(),
+			color.getW()
 		);
 	}
 

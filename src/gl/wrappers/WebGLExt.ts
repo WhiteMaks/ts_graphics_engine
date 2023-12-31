@@ -1,3 +1,6 @@
+import Vector3 from "../maths/impl/Vector3";
+import Vector4 from "../maths/impl/Vector4";
+
 /**
  * Класс обертка над стандартными методами WebGL
  */
@@ -602,6 +605,7 @@ class WebGLExt {
 		if (!result) {
 			throw new Error("Ошибка получения униформы с именем [ " + name + " ]");
 		}
+
 		return result;
 	}
 
@@ -622,34 +626,29 @@ class WebGLExt {
 	/**
 	 * Установка данных в униформу для текущего объекта программы
 	 * @param location положение униформы
-	 * @param x компонента X
-	 * @param y компонента Y
-	 * @param z компонента Z
+	 * @param vector вектор с тремя компонентами
 	 */
-	public uniform3f(location: WebGLUniformLocation, x: number, y: number, z: number): void {
+	public uniform3f(location: WebGLUniformLocation, vector: Vector3): void {
 		this.context.uniform3f(
 			location,
-			x,
-			y,
-			z
+			vector.getX(),
+			vector.getY(),
+			vector.getZ()
 		);
 	}
 
 	/**
 	 * Установка данных в униформу для текущего объекта программы
 	 * @param location положение униформы
-	 * @param x компонента X
-	 * @param y компонента Y
-	 * @param z компонента Z
-	 * @param w компонента W
+	 * @param vector вектор с четырьмя компонентами
 	 */
-	public uniform4f(location: WebGLUniformLocation, x: number, y: number, z: number, w: number): void {
+	public uniform4f(location: WebGLUniformLocation, vector: Vector4): void {
 		this.context.uniform4f(
 			location,
-			x,
-			y,
-			z,
-			w
+			vector.getX(),
+			vector.getY(),
+			vector.getZ(),
+			vector.getW(),
 		);
 	}
 

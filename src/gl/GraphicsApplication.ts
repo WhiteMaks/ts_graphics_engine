@@ -1,6 +1,7 @@
 import GraphicsElement from "./support/GraphicsElement";
 import WebGLExt from "./wrappers/WebGLExt";
 import GraphicsLogic from "./GraphicsLogic";
+import Vector4 from "./maths/impl/Vector4";
 
 /**
  * Класс графического приложения
@@ -47,16 +48,10 @@ class GraphicsApplication {
 
 	/**
 	 * Установка нового цвета для пространства
-	 * @param red красные цвет
-	 * @param green зеленый цвет
-	 * @param blue синий цвет
+	 * @param color цветовой вектор
 	 */
-	public setSpaceColor(red: number, green: number, blue: number): void {
-		this.graphicElement.setSpaceColor(
-			red,
-			green,
-			blue
-		)
+	public setSpaceColor(color: Vector4): void {
+		this.graphicElement.setSpaceColor(color);
 	}
 
 	/**
@@ -86,6 +81,7 @@ class GraphicsApplication {
 			this.clean();
 			return;
 		}
+
 		this.frame = window.requestAnimationFrame(
 			(timestamp: number) => this.loop(timestamp)
 		);
