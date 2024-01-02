@@ -135,6 +135,10 @@ class GraphicsElement {
 		this.spaceColor = color;
 	}
 
+	public getCanvasElement(): HTMLCanvasElement {
+		return this.canvasElement;
+	}
+
 	/**
 	 * Встраивание графического элемента (canvas) в родительский элемент
 	 * @private

@@ -4,7 +4,7 @@ import Cleanable from "./support/Cleanable";
 /**
  * Интерфейс для работы с графической логикой
  */
-interface GraphicsLogic extends Cleanable {
+interface IGraphicsLogic extends Cleanable {
 
 	/**
 	 * Инициализация графической логики
@@ -29,4 +29,4 @@ interface GraphicsLogic extends Cleanable {
 
 }
 
-export default GraphicsLogic;
+export default IGraphicsLogic;

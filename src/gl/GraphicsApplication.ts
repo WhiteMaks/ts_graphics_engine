@@ -1,6 +1,6 @@
 import GraphicsElement from "./support/GraphicsElement";
 import WebGLExt from "./wrappers/WebGLExt";
-import GraphicsLogic from "./GraphicsLogic";
+import IGraphicsLogic from "./IGraphicsLogic";
 import Vector4 from "./maths/impl/Vector4";
 
 /**
@@ -16,7 +16,7 @@ class GraphicsApplication {
 	 * Объект для работы с логикой графического приложения
 	 * @private
 	 */
-	private readonly logic: GraphicsLogic;
+	private readonly logic: IGraphicsLogic;
 
 	/**
 	 * Идентификатор фрейма анимации
@@ -27,7 +27,7 @@ class GraphicsApplication {
 	/**
 	 * Конструктор для создания объекта графического приложения
 	 */
-	public constructor(parentElement: HTMLElement, logic: GraphicsLogic) {
+	public constructor(parentElement: HTMLElement, logic: IGraphicsLogic) {
 		this.logic = logic; //сохранение логики приложения
 
 		this.graphicElement = new GraphicsElement(
