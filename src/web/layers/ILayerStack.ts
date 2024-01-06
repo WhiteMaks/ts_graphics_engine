@@ -1,5 +1,5 @@
 import ILayer from "./ILayer";
-import Cleanable from "../../support/Cleanable";
+import Cleanable from "../support/Cleanable";
 
 interface ILayerStack<LAYER extends ILayer<any, any>> extends Cleanable {
 

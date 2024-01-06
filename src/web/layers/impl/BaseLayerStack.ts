@@ -13,12 +13,14 @@ class BaseLayerStack<LAYER extends ILayer<any, any>> implements ILayerStack<LAYE
 
 	public push(layer: LAYER): void {
 		this.layers.splice(this.layerInsert, 0, layer);
+		layer.attach();
 
 		this.layerInsert++;
 	}
 
 	public pushOverlay(layer: LAYER): void {
 		this.layers.push(layer);
+		layer.attach();
 	}
 
 	public clean(): void {

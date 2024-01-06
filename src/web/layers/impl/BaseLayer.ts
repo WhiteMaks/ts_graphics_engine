@@ -3,7 +3,7 @@ import ILayer from "../ILayer";
 abstract class BaseLayer<MOUSE_EVENT, KEYBOARD_EVENT> implements ILayer<MOUSE_EVENT, KEYBOARD_EVENT> {
 	private readonly name: string;
 
-	public constructor(name: string = "layer") {
+	protected constructor(name: string = "layer") {
 		this.name = name;
 	}
 

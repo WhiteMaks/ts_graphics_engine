@@ -684,11 +684,12 @@ class WebGLExt {
 		this.context.activeTexture(this.context.TEXTURE0 + slot);
 	}
 
-	/**
-	 * @deprecated Нельзя отдавать наружу контекст!!!
-	 */
-	public getContext(): WebGL2RenderingContext {
-		return this.context;
+	public getVendor(): string {
+		return this.vendor;
+	}
+
+	public getRenderer(): string {
+		return this.renderer;
 	}
 }
 

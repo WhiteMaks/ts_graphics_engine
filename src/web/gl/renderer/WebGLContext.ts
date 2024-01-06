@@ -52,6 +52,11 @@ class WebGLContext implements IGraphicsContext {
 		this.gl.clearColorWithAlpha(color.getX(), color.getY(), color.getZ(), color.getW());
 	}
 
+	public printDebugInfo(): void {
+		console.log("Vendor: " + this.gl.getVendor());
+		console.log("Renderer: " + this.gl.getRenderer());
+	}
+
 	public getGL(): WebGLExt {
 		return this.gl;
 	}

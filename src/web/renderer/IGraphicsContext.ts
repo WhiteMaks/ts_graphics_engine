@@ -13,6 +13,8 @@ interface IGraphicsContext {
 
 	clearColor(color: Vector4): void;
 
+	printDebugInfo(): void;
+
 	/**
 	 * @deprecated
 	 */
