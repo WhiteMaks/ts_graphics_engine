@@ -1,5 +1,6 @@
-import WebGLExt from "../wrappers/WebGLExt";
-import Vector4 from "../maths/impl/Vector4";
+import Vector4 from "../../../maths/impl/Vector4";
+import IGraphicsContext from "../../renderer/IGraphicsContext";
+import WebGLContext from "../renderer/WebGLContext";
 
 /**
  * Класс для создания нового графического элемента и взаимодействия с ним
@@ -16,12 +17,11 @@ class GraphicsElement {
 	 * @private
 	 */
 	private readonly parentElement: HTMLElement;
-
 	/**
-	 * Объект для работы с WebGL
+	 * Графический контекст
 	 * @private
 	 */
-	private readonly gl: WebGLExt;
+	private readonly graphicsContext: IGraphicsContext;
 
 	/**
 	 * Объект для хранения цвета пространства
@@ -45,20 +45,7 @@ class GraphicsElement {
 			return false
 		};
 
-		const webGLContext = this.canvasElement.getContext("webgl2"); //получение контекста для работы с WebGL
-
-		//если выбранный контекст не проинициализирован, значит либо его не существует, либо браузер не может с ним работать
-		if (!webGLContext) {
-			throw new Error("Невозможно проинициализировать WebGL. Данный браузер не поддерживает данный контекст [ webgl2 ]");
-		}
-
-		//инициализация объекта WebGL с выбранным контекстом
-		this.gl = new WebGLExt(
-			webGLContext //выбранный контекст
-		);
-		this.gl.enableDepthTest(); //включение проверки удаленности объектов
-		this.gl.enableBlend(); //включение смешивания пикселей
-		this.gl.blendFuncSrcAlphaOneMinusSrcAlpha(); //включение прозрачности
+		this.graphicsContext = new WebGLContext(this.canvasElement);
 
 		this.spaceColor = new Vector4(0, 0, 0, 1);
 	}
@@ -77,23 +64,25 @@ class GraphicsElement {
 		this.destroy();
 		this.embedToElement();
 		this.addListenerResizeWindow();
+
+		this.graphicsContext.init();
 	}
 
 	/**
 	 * Отрисовка графического элемента
 	 */
 	public render(): void {
-		this.setClearColor(this.spaceColor);
+		this.graphicsContext.clearColor(this.spaceColor);
 
-		this.gl.clearColorBuffer();
-		this.gl.clearDepthBuffer();
+		this.graphicsContext.clearColorBuffer();
+		this.graphicsContext.clearDepthBuffer();
 	}
 
 	/**
 	 * Получение объекта WebGL
 	 */
-	public getWebGL(): WebGLExt {
-		return this.gl;
+	public getGraphicsContext(): IGraphicsContext {
+		return this.graphicsContext;
 	}
 
 	/**
@@ -161,21 +150,12 @@ class GraphicsElement {
 		);
 	}
 
-	private setClearColor(color: Vector4) {
-		this.gl.clearColorWithAlpha(
-			color.getX(),
-			color.getY(),
-			color.getZ(),
-			color.getW()
-		);
-	}
-
 	/**
 	 * Обновление области просмотра
 	 * @private
 	 */
 	private updateViewport() {
-		this.gl.setViewport(
+		this.graphicsContext.setViewport(
 			0,
 			0,
 			this.canvasElement.width,

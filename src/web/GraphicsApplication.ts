@@ -1,7 +1,6 @@
-import GraphicsElement from "./support/GraphicsElement";
-import WebGLExt from "./wrappers/WebGLExt";
+import GraphicsElement from "./gl/support/GraphicsElement";
 import IGraphicsLogic from "./IGraphicsLogic";
-import Vector4 from "./maths/impl/Vector4";
+import Vector4 from "../maths/impl/Vector4";
 
 /**
  * Класс графического приложения
@@ -52,13 +51,6 @@ class GraphicsApplication {
 	 */
 	public setSpaceColor(color: Vector4): void {
 		this.graphicElement.setSpaceColor(color);
-	}
-
-	/**
-	 * Получение объекта для работы с WebGL
-	 */
-	public getWebGL(): WebGLExt {
-		return this.graphicElement.getWebGL();
 	}
 
 	/**

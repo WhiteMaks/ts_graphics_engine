@@ -1,7 +1,7 @@
-import Cleanable from "../support/Cleanable";
-import Vector4 from "../maths/impl/Vector4";
-import Vector3 from "../maths/impl/Vector3";
-import Matrix4 from "../maths/impl/Matrix4";
+import Cleanable from "../../support/Cleanable";
+import Vector4 from "../../../maths/impl/Vector4";
+import Vector3 from "../../../maths/impl/Vector3";
+import Matrix4 from "../../../maths/impl/Matrix4";
 
 interface IShaderProgram extends Cleanable {
 

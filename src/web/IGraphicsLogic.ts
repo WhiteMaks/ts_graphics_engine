@@ -1,4 +1,4 @@
-import GraphicsElement from "./support/GraphicsElement";
+import GraphicsElement from "./gl/support/GraphicsElement";
 import Cleanable from "./support/Cleanable";
 
 /**

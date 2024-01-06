@@ -1,4 +1,4 @@
-import Cleanable from "../support/Cleanable";
+import Cleanable from "../../support/Cleanable";
 
 interface ITexture extends Cleanable {
 

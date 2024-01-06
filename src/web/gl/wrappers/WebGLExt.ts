@@ -1,5 +1,5 @@
-import Vector3 from "../maths/impl/Vector3";
-import Vector4 from "../maths/impl/Vector4";
+import Vector3 from "../../../maths/impl/Vector3";
+import Vector4 from "../../../maths/impl/Vector4";
 
 /**
  * Класс обертка над стандартными методами WebGL
