@@ -1,6 +1,7 @@
 import Vector4 from "../../../maths/impl/Vector4";
 import IGraphicsContext from "../../renderer/IGraphicsContext";
 import WebGLContext from "../renderer/WebGLContext";
+import API from "../../graphics/API";
 
 /**
  * Класс для создания нового графического элемента и взаимодействия с ним
@@ -32,8 +33,9 @@ class GraphicsElement {
 	/**
 	 * Конструктор для создания объекта графического элемента в родительском элементе
 	 * @param parentElement родительский элемент
+	 * @param api апи графического контекста
 	 */
-	public constructor(parentElement: HTMLElement) {
+	public constructor(parentElement: HTMLElement, api: API) {
 		this.parentElement = parentElement;
 
 		this.canvasElement = document.createElement("canvas"); //создание вэб элемента canvas
@@ -45,7 +47,12 @@ class GraphicsElement {
 			return false
 		};
 
-		this.graphicsContext = new WebGLContext(this.canvasElement);
+		switch (api) {
+			case API.WEB_GL: {
+				this.graphicsContext = new WebGLContext(this.canvasElement);
+				break;
+			}
+		}
 
 		this.spaceColor = new Vector4(0, 0, 0, 1);
 	}
@@ -79,7 +86,7 @@ class GraphicsElement {
 	}
 
 	/**
-	 * Получение объекта WebGL
+	 * Получение объекта графического контекста
 	 */
 	public getGraphicsContext(): IGraphicsContext {
 		return this.graphicsContext;

@@ -1,6 +1,7 @@
-import GraphicsElement from "./gl/support/GraphicsElement";
+import GraphicsElement from "../gl/support/GraphicsElement";
 import IGraphicsLogic from "./IGraphicsLogic";
-import Vector4 from "../maths/impl/Vector4";
+import Vector4 from "../../maths/impl/Vector4";
+import API from "./API";
 
 /**
  * Класс графического приложения
@@ -26,12 +27,10 @@ class GraphicsApplication {
 	/**
 	 * Конструктор для создания объекта графического приложения
 	 */
-	public constructor(parentElement: HTMLElement, logic: IGraphicsLogic) {
+	public constructor(parentElement: HTMLElement, logic: IGraphicsLogic, api: API) {
 		this.logic = logic; //сохранение логики приложения
 
-		this.graphicElement = new GraphicsElement(
-			parentElement
-		);
+		this.graphicElement = new GraphicsElement(parentElement, api);
 
 		this.frame = 0;
 	}

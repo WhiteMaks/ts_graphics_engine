@@ -1,5 +1,5 @@
-import GraphicsElement from "./gl/support/GraphicsElement";
-import Cleanable from "./support/Cleanable";
+import GraphicsElement from "../gl/support/GraphicsElement";
+import Cleanable from "../support/Cleanable";
 
 /**
  * Интерфейс для работы с графической логикой
