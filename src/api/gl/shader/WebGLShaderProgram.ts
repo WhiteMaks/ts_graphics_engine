@@ -1,9 +1,9 @@
-import IShaderProgram from "../../../../renderer/IShaderProgram";
-import IWebGLShader from "../IWebGLShader";
-import WebGLExt from "../../wrappers/WebGLExt";
-import Vector4 from "../../../../maths/impl/Vector4";
-import Vector3 from "../../../../maths/impl/Vector3";
-import Matrix4 from "../../../../maths/impl/Matrix4";
+import IShaderProgram from "../../../renderer/IShaderProgram";
+import IWebGLShader from "./IWebGLShader";
+import WebGLExt from "../wrappers/WebGLExt";
+import Vector4 from "../../../maths/impl/Vector4";
+import Vector3 from "../../../maths/impl/Vector3";
+import Matrix4 from "../../../maths/impl/Matrix4";
 
 class WebGLShaderProgram implements IShaderProgram {
 	private readonly locationsCache: Map<string, WebGLUniformLocation>;

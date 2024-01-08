@@ -1,5 +1,5 @@
-import WebGLVertexStaticBuffer from "../impl/WebGLVertexStaticBuffer";
-import WebGLExt from "../../wrappers/WebGLExt";
+import WebGLVertexStaticBuffer from "./WebGLVertexStaticBuffer";
+import WebGLExt from "../wrappers/WebGLExt";
 
 class WebGLFloat32VertexStaticBuffer extends WebGLVertexStaticBuffer {
 

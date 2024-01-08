@@ -1,8 +1,8 @@
 import Renderer from "../renderer/Renderer";
 import IGraphicsContext from "../renderer/IGraphicsContext";
 import RendererAPI from "../renderer/RendererAPI";
-import WebGLContext from "../api/gl/renderer/impl/WebGLContext";
-import WebGLRenderer from "../api/gl/renderer/ext/WebGLRenderer";
+import WebGLContext from "../api/gl/renderer/WebGLContext";
+import WebGLRenderer from "../api/gl/renderer/WebGLRenderer";
 
 class RendererFactory {
 

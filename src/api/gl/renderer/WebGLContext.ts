@@ -1,5 +1,5 @@
-import IGraphicsContext from "../../../../renderer/IGraphicsContext";
-import WebGLExt from "../../wrappers/WebGLExt";
+import IGraphicsContext from "../../../renderer/IGraphicsContext";
+import WebGLExt from "../wrappers/WebGLExt";
 
 class WebGLContext implements IGraphicsContext {
 	/**

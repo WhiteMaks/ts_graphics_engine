@@ -68,6 +68,26 @@ class Transformation {
 		]);
 	}
 
+
+	/**
+	 * Получение матрицы ортогональной проекции (для корректного отображения 2D пространства)
+	 * @param left левая граница усеченного конуса
+	 * @param right правая граница усеченного конуса
+	 * @param bottom нижняя граница усеченного конуса
+	 * @param top верхняя граница усеченного конуса
+	 */
+	public static getOrthogonalProjectionMatrixWithoutNearFar(left: number, right: number, bottom: number, top: number): Matrix4 {
+		const leftMinusRight = 1 / (left - right);
+		const bottomMinusTop = 1 / (bottom - top);
+
+		return new Matrix4([
+			(-2) * leftMinusRight, 0, 0, 0,
+			0, (-2) * bottomMinusTop, 0, 0,
+			0, 0, (-1), 0,
+			(left + right) * leftMinusRight, (top + bottom) * bottomMinusTop, 0, 1
+		]);
+	}
+
 	/**
 	 * Получение матрицы просмотра
 	 * @param position позиция с которой необходимо получить матрицу
@@ -76,7 +96,8 @@ class Transformation {
 	public static getViewMatrix(position: Vector3, rotation: Vector3): Matrix4 {
 		const rotationXMatrix = this.getRotationMatrix(this.IDENTITY_MATRIX, Transformation.degreesToRadians(rotation.getX()), new Vector3(1, 0, 0));
 		const rotationXYMatrix = this.getRotationMatrix(rotationXMatrix, Transformation.degreesToRadians(rotation.getY()), new Vector3(0, 1, 0));
-		return this.getTranslationMatrix(rotationXYMatrix, new Vector3(-position.getX(), -position.getY(), -position.getZ()));
+		const rotationXYZMatrix = this.getRotationMatrix(rotationXYMatrix, Transformation.degreesToRadians(rotation.getZ()), new Vector3(0, 0, 1));
+		return this.getTranslationMatrix(rotationXYZMatrix, new Vector3(-position.getX(), -position.getY(), -position.getZ()));
 	}
 
 	/**

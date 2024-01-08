@@ -1,13 +1,13 @@
-import IWebGLShader from "../IWebGLShader";
-import WebGLExt from "../../wrappers/WebGLExt";
+import IWebGLShader from "./IWebGLShader";
+import WebGLExt from "../wrappers/WebGLExt";
 
-class WebGLFragmentShader implements IWebGLShader {
+class WebGLVertexShader implements IWebGLShader {
 	private readonly gl: WebGLExt;
 	private readonly vs: WebGLShader;
 
 	public constructor(gl: WebGLExt, code: string) {
 		this.gl = gl;
-		this.vs = this.gl.createFragmentShader();
+		this.vs = this.gl.createVertexShader();
 		this.gl.setShaderSource(this.vs, code);
 	}
 
@@ -20,4 +20,4 @@ class WebGLFragmentShader implements IWebGLShader {
 	}
 }
 
-export default WebGLFragmentShader;
+export default WebGLVertexShader;

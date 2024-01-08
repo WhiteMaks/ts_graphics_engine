@@ -1,8 +1,8 @@
-import WebGLExt from "../../wrappers/WebGLExt";
-import IArrayBuffer from "../../../../renderer/IArrayBuffer";
-import IBuffer from "../../../../renderer/IBuffer";
-import BufferLayout from "../../../../renderer/BufferLayout";
-import ShaderDataType, {getComponentCountFromShaderDataType} from "../../../../support/ShaderDataType";
+import WebGLExt from "../wrappers/WebGLExt";
+import IArrayBuffer from "../../../renderer/IArrayBuffer";
+import IBuffer from "../../../renderer/IBuffer";
+import BufferLayout from "../../../renderer/BufferLayout";
+import ShaderDataType, {getComponentCountFromShaderDataType} from "../../../support/ShaderDataType";
 
 class WebGLVertexArrayBuffer implements IArrayBuffer {
 	private readonly gl: WebGLExt;

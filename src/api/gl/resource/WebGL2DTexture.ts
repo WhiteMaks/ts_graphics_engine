@@ -1,5 +1,5 @@
-import ITexture from "../../../../renderer/ITexture";
-import WebGLExt from "../../wrappers/WebGLExt";
+import ITexture from "../../../resource/ITexture";
+import WebGLExt from "../wrappers/WebGLExt";
 
 class WebGL2DTexture implements ITexture {
 	private readonly gl: WebGLExt;

@@ -1,6 +1,6 @@
-import IBuffer from "../../../../renderer/IBuffer";
-import WebGLExt from "../../wrappers/WebGLExt";
-import BufferLayout from "../../../../renderer/BufferLayout";
+import IBuffer from "../../../renderer/IBuffer";
+import WebGLExt from "../wrappers/WebGLExt";
+import BufferLayout from "../../../renderer/BufferLayout";
 
 class WebGLVertexStaticBuffer implements IBuffer {
 	private readonly gl: WebGLExt;

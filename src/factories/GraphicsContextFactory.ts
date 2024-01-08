@@ -1,6 +1,6 @@
 import IGraphicsContext from "../renderer/IGraphicsContext";
 import RendererAPI from "../renderer/RendererAPI";
-import WebGLContext from "../api/gl/renderer/impl/WebGLContext";
+import WebGLContext from "../api/gl/renderer/WebGLContext";
 import Renderer from "../renderer/Renderer";
 
 class GraphicsContextFactory {

@@ -1,5 +1,5 @@
-import WebGLIndexStaticBuffer from "../impl/WebGLIndexStaticBuffer";
-import WebGLExt from "../../wrappers/WebGLExt";
+import WebGLIndexStaticBuffer from "./WebGLIndexStaticBuffer";
+import WebGLExt from "../wrappers/WebGLExt";
 
 class WebGLUint16IndexStaticBuffer extends WebGLIndexStaticBuffer {
 

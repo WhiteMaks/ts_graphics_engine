@@ -2,11 +2,11 @@ import IBuffer from "../renderer/IBuffer";
 import Renderer from "../renderer/Renderer";
 import RendererAPI from "../renderer/RendererAPI";
 import IGraphicsContext from "../renderer/IGraphicsContext";
-import WebGLContext from "../api/gl/renderer/impl/WebGLContext";
-import WebGLFloat32VertexStaticBuffer from "../api/gl/renderer/ext/WebGLFloat32VertexStaticBuffer";
-import WebGLUint16IndexStaticBuffer from "../api/gl/renderer/ext/WebGLUint16IndexStaticBuffer";
+import WebGLContext from "../api/gl/renderer/WebGLContext";
 import IArrayBuffer from "../renderer/IArrayBuffer";
-import WebGLVertexArrayBuffer from "../api/gl/renderer/impl/WebGLVertexArrayBuffer";
+import WebGLVertexArrayBuffer from "../api/gl/buffer/WebGLVertexArrayBuffer";
+import WebGLUint16IndexStaticBuffer from "../api/gl/buffer/WebGLUint16IndexStaticBuffer";
+import WebGLFloat32VertexStaticBuffer from "../api/gl/buffer/WebGLFloat32VertexStaticBuffer";
 
 class BufferFactory {
 
