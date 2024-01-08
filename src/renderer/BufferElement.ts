@@ -8,7 +8,7 @@ interface BufferElement {
 	normalized: boolean;
 }
 
-export function createBufferElement(type: ShaderDataType, name: string, normalized: boolean = false): BufferElement {
+export function NewBufferElement(type: ShaderDataType, name: string, normalized: boolean = false): BufferElement {
 	return {
 		type: type,
 		name: name,

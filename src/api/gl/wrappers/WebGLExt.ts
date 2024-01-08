@@ -32,7 +32,8 @@ class WebGLExt {
 		this.clearColor(
 			0,
 			0,
-			0
+			0,
+			1
 		);
 
 		const debugInfo = this.context.getExtension('WEBGL_debug_renderer_info');
@@ -93,28 +94,13 @@ class WebGLExt {
 	}
 
 	/**
-	 * Заливка экрана выбранным цветом
-	 * @param red значение красного цвета
-	 * @param green значение зеленого цвета
-	 * @param blue значение синего цвета
-	 */
-	public clearColor(red: number, green: number, blue: number): void {
-		this.clearColorWithAlpha(
-			red,
-			green,
-			blue,
-			1.0
-		)
-	}
-
-	/**
 	 * Заливка экрана выбранным цветом с прозрачностью
 	 * @param red значение красного цвета
 	 * @param green значение зеленого цвета
 	 * @param blue значение синего цвета
 	 * @param alpha значение прозрачности цвета
 	 */
-	public clearColorWithAlpha(red: number, green: number, blue: number, alpha: number): void {
+	public clearColor(red: number, green: number, blue: number, alpha: number): void {
 		this.context.clearColor(
 			red,
 			green,

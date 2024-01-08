@@ -1,7 +1,7 @@
 import IArrayBuffer from "../../../../renderer/IArrayBuffer";
-import IShaderProgram from "../../../../renderer/IShaderProgram";
 import WebGLExt from "../../wrappers/WebGLExt";
 import Renderer from "../../../../renderer/Renderer";
+import Vector4 from "../../../../maths/impl/Vector4";
 
 class WebGLRenderer extends Renderer {
 	private readonly gl: WebGLExt;
@@ -12,11 +12,23 @@ class WebGLRenderer extends Renderer {
 		this.gl = gl;
 	}
 
-	public draw(arrayBuffer: IArrayBuffer, shaderProgram: IShaderProgram): void {
-		shaderProgram!.bind()
-		arrayBuffer.bind();
-		// indexBuffer.bind();
+	public clear(): void {
+		this.gl.clearColorBuffer();
+		this.gl.clearDepthBuffer();
+	}
 
+	public setClearColor(color: Vector4): void {
+		this.gl.clearColor(color.getX(), color.getY(), color.getZ(), color.getW());
+	}
+
+	public begin(): void {
+	}
+
+	public end(): void {
+	}
+
+	public submitArrayBuffer(arrayBuffer: IArrayBuffer): void {
+		arrayBuffer.bind();
 		this.gl.drawTriangleElementsUshort(arrayBuffer.getIndexBuffer().getCount(), 0);
 	}
 }

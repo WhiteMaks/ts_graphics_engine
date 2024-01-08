@@ -1,6 +1,6 @@
 import RendererAPI from "./RendererAPI";
 import IArrayBuffer from "./IArrayBuffer";
-import IShaderProgram from "./IShaderProgram";
+import Vector4 from "../maths/impl/Vector4";
 
 abstract class Renderer {
 	private static rendererAPI: RendererAPI = RendererAPI.WEB_GL;
@@ -13,7 +13,15 @@ abstract class Renderer {
 		Renderer.rendererAPI = api;
 	}
 
-	public abstract draw(arrayBuffer: IArrayBuffer, shaderProgram: IShaderProgram): void;
+	public abstract begin(): void;
+
+	public abstract end(): void;
+
+	public abstract setClearColor(color: Vector4): void;
+
+	public abstract clear(): void;
+
+	public abstract submitArrayBuffer(arrayBuffer: IArrayBuffer): void;
 }
 
 export default Renderer;
